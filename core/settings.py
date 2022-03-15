@@ -78,12 +78,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+        'ENGINE': config('ENGINE_DB', default='django.db.backends.postgresql'),
+        'NAME': config('NAME_DB', default='mydatabase'),
+        'USER': config('USER_DB', default='mydatabaseuser'),
+        'PASSWORD': config('PASSWORD_DB', default='mypassword'),
+        'HOST': config('HOST_DB', default='127.0.0.1'),
+        'PORT': config('PORT_DB', default='5432'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
